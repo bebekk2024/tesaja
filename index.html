@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untuk Ayuni ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Sacramento&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: white;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(15px);
+      border-radius: 25px;
+      padding: 35px 25px;
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease;
+    }
+
+    h1 {
+      font-family: 'Sacramento', cursive;
+      font-size: 2.8em;
+    }
+
+    .heart {
+      font-size: 40px;
+      animation: beat 1.2s infinite;
+      margin: 10px 0;
+    }
+
+    #message {
+      margin-top: 15px;
+      font-size: 1em;
+      line-height: 1.7;
+      min-height: 140px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      background: white;
+      color: #ff6f91;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes beat {
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.3)}
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .floating {
+      position: absolute;
+      bottom: -50px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 0.7; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Ayuni ❤️</h1>
+  <div class="heart">💖</div>
+
+  <p id="message"></p>
+
+  <button onclick="nextMessage()">Klik terus ya 🥺</button>
+</div>
+
+<script>
+  const messages = [
+    "Aku gak tau gimana cara jelasin semuanya dengan sempurna... tapi sejak ada kamu, hidup aku berubah jadi lebih berarti.",
+    "Kamu itu sederhana, tapi entah kenapa selalu berhasil bikin aku bahagia dengan cara yang gak bisa dijelasin.",
+    "Kadang aku mikir, dari sekian banyak orang di dunia... kenapa harus kamu? dan jawabannya selalu sama: karena cuma kamu yang bisa bikin aku ngerasa 'pulang'.",
+    "Terima kasih ya sudah bertahan sejauh ini sama aku, dengan semua kurangnya aku.",
+    "Aku mungkin bukan yang terbaik, tapi aku selalu berusaha jadi yang terbaik buat kamu.",
+    "Aku sayang sama kamu, bukan cuma karena siapa kamu hari ini... tapi juga karena siapa kamu di masa depan.",
+    "Aku mau ada di setiap cerita kamu, di setiap tawa kamu, bahkan di saat kamu lagi sedih.",
+    "Kalau suatu hari kita capek... aku harap kita gak saling ninggalin, tapi saling genggam lebih erat.",
+    "Karena buat aku, hubungan ini bukan tentang siapa yang paling benar... tapi tentang kita yang tetap milih bertahan.",
+    "Ayuni... kamu itu bukan cuma pacar aku.",
+    "Kamu itu rumah.",
+    "Dan aku harap... aku bisa jadi rumah juga buat kamu selamanya ❤️"
+  ];
+
+  let index = 0;
+
+  function typeWriter(text, i, fnCallback) {
+    if (i < text.length) {
+      document.getElementById("message").innerHTML = text.substring(0, i+1);
+      setTimeout(function() {
+        typeWriter(text, i + 1, fnCallback)
+      }, 30);
+    } else if (typeof fnCallback == 'function') {
+      setTimeout(fnCallback, 500);
+    }
+  }
+
+  function nextMessage() {
+    if (index < messages.length) {
+      typeWriter(messages[index], 0);
+      index++;
+    } else {
+      document.getElementById("message").innerHTML = "Aku sayang kamu selamanya, Ayuni ❤️";
+    }
+  }
+
+  // floating hearts
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('floating');
+    heart.innerHTML = '💗';
+    heart.style.left = Math.random() * 100 + 'vw';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+
+  setInterval(createHeart, 300);
+
+  // start first message
+  nextMessage();
+</script>
+
+</body>
+</html>
